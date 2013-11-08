@@ -17,7 +17,7 @@ CodeMirror.defineMode("htmlmixed", function(config, parserConfig) {
     var style = htmlMode.token(stream, state.htmlState);
     if (tagName == "script" && /\btag\b/.test(style) && stream.current() == ">") {
       // Script block: mode to change to depends on type attribute
-      var scriptType = stream.string.slice(Math.max(0, stream.pos - 100), stream.pos).match(/\btype\s*=\s*("[^"]+"|'[^']+'|\S+)[^<]*$/i);
+      var scriptType = stream.string.slice(Math.max(0, stream.pos - 100), stream.pos - 1).match(/\btype\s*=\s*("[^"]+"|'[^']+'|\S+)[^<]*$/i);
       scriptType = scriptType ? scriptType[1] : "";
       if (scriptType && /[\"\']/.test(scriptType.charAt(0))) scriptType = scriptType.slice(1, scriptType.length - 1);
       for (var i = 0; i < scriptTypes.length; ++i) {
